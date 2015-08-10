@@ -64,7 +64,24 @@ public class TestHarryBookStore {
 	public void buy_2_1st_book_and_1_2nd_book() {
 		bookStore.buy(new Book("1st"), 2);
 		bookStore.buy(new Book("2nd"));
-		assertEquals(23.2, bookStore.getTotalPrice(),0);
+		assertEquals(23.2, bookStore.getTotalPrice(), 0);
+	}
+	
+	@Test 
+	public void buy_2_1st_book_and_2_2nd_book() {
+		bookStore.buy(new Book("1st"), 2);
+		bookStore.buy(new Book("2nd"), 2);
+		assertEquals(30.4, bookStore.getTotalPrice(), 0);
+	}
+	
+	@Test
+	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_no_optimize() {
+		bookStore.buy(new Book("1st"), 2);
+		bookStore.buy(new Book("2nd"), 2);
+		bookStore.buy(new Book("3rd"), 2);
+		bookStore.buy(new Book("4th"));
+		bookStore.buy(new Book("5th"));
+		assertEquals(51.6, bookStore.getTotalPrice(), 0);
 	}
 	
 	

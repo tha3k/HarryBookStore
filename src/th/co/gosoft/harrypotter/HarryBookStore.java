@@ -11,13 +11,14 @@ public class HarryBookStore {
 	public double getTotalPrice() {
 		int bookTypeCount = shopingCart.size();
 		double totalPrice = 0.0;
+		int maxBookType = 5;
 
 		while (bookTypeCount>0) {
 			double eachTotalPrice = bookTypeCount*8;
 			double eachTotalDiscount = getTotalDiscount(eachTotalPrice, bookTypeCount);
 			totalPrice += (eachTotalPrice-eachTotalDiscount);
 			
-			removeBookFromShopingCart();
+			removeBookFromShopingCart(maxBookType);
 			bookTypeCount = shopingCart.size();
 		}
 		
@@ -38,14 +39,16 @@ public class HarryBookStore {
 		return shopingCart;
 	}
 	
-	private void removeBookFromShopingCart() {
+	private void removeBookFromShopingCart(int maxBookType) {
 		Map<String, Integer> updatedShopingCart = new HashMap<String, Integer>();
 		Iterator<String> iteAllBook = shopingCart.keySet().iterator();
-		while (iteAllBook.hasNext()) {
+		int bookType = 0;
+		while (iteAllBook.hasNext() && bookType<maxBookType) {
 			String bookName = iteAllBook.next();
-			int newBookCount = ((int)shopingCart.get(bookName))-1;
+			int newBookCount = shopingCart.get(bookName)-1;
 			if (newBookCount>0)
 				updatedShopingCart.put(bookName, newBookCount);
+			bookType++;
 		}
 		shopingCart = updatedShopingCart;
 	}

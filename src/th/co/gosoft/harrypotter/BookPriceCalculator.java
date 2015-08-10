@@ -21,7 +21,7 @@ public class BookPriceCalculator {
 	}
 
 	public double getTotalPriceOfBookSet(int maxBookType) {
-		Map<String, Integer> eachShopingCart = shopingCart.getShopingCartMap();
+		Map<String, ShopingBook> eachShopingCart = shopingCart.getShopingCartMap();
 		double totalPrice = 0.0;
 		int allBookTypeCount = eachShopingCart.size();
 		while (allBookTypeCount>0) {
@@ -37,19 +37,19 @@ public class BookPriceCalculator {
 		return totalPrice;
 	}
 
-	private Map<String, Integer> removeBookFromShopingCart(Map<String, Integer> eachShopingCart, int maxBookType) {
-		Map<String, Integer> updatedShopingCart = new HashMap<String, Integer>();
+	private Map<String, ShopingBook> removeBookFromShopingCart(Map<String, ShopingBook> eachShopingCart, int maxBookType) {
+		Map<String, ShopingBook> updatedShopingCart = new HashMap<String, ShopingBook>();
 		Iterator<String> iteAllBook = eachShopingCart.keySet().iterator();
 		int bookType = 0;
 		while (iteAllBook.hasNext()) {
 			String bookName = iteAllBook.next();
 			
-			int newBookCount = eachShopingCart.get(bookName);
+			int newBookCount = eachShopingCart.get(bookName).getCount();
 			if (bookType<maxBookType)
 				newBookCount--;
 			
 			if (newBookCount>0)
-				updatedShopingCart.put(bookName, newBookCount);
+				updatedShopingCart.put(bookName, new ShopingBook(eachShopingCart.get(bookName).getBook(), newBookCount));
 			
 			bookType++;
 		}

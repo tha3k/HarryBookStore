@@ -26,7 +26,7 @@ public class BookPriceCalculator {
 		int allBookTypeCount = eachShopingCart.size();
 		while (allBookTypeCount>0) {
 			int bookTypeCount = (allBookTypeCount>maxBookType)?maxBookType:allBookTypeCount;
-			double eachTotalPrice = bookTypeCount*8;
+			double eachTotalPrice = getTotalPriceNormal(eachShopingCart, bookTypeCount);
 			double eachTotalDiscount = getTotalDiscount(bookTypeCount, eachTotalPrice);
 			totalPrice += (eachTotalPrice-eachTotalDiscount);
 			
@@ -37,6 +37,20 @@ public class BookPriceCalculator {
 		return totalPrice;
 	}
 
+	
+	private double getTotalPriceNormal(Map<String, ShopingBook> eachShopingCart, int maxBookType) {
+		Iterator<String> iteAllBook = eachShopingCart.keySet().iterator();
+		double totalPrice = 0;
+		int bookType = 0;
+		while (iteAllBook.hasNext()) {
+			String bookName = iteAllBook.next();
+			if (bookType<maxBookType)
+				totalPrice += eachShopingCart.get(bookName).getBook().getPrice();
+			bookType++;
+		}
+		return totalPrice;
+	}
+	
 	private Map<String, ShopingBook> removeBookFromShopingCart(Map<String, ShopingBook> eachShopingCart, int maxBookType) {
 		Map<String, ShopingBook> updatedShopingCart = new HashMap<String, ShopingBook>();
 		Iterator<String> iteAllBook = eachShopingCart.keySet().iterator();
@@ -56,7 +70,6 @@ public class BookPriceCalculator {
 		return updatedShopingCart;
 	}
 	
-
 	private double getTotalDiscount(int bookTypeCount, double totalPrice) {
 		return totalPrice*DISCOUNT_PERCENT[bookTypeCount];
 	}

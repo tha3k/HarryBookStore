@@ -9,6 +9,7 @@ import th.co.gosoft.harrypotter.bean.HarryPotterBook;
 
 
 public class TestHarryBookStore {
+	public static final int TWO_BOOKS = 2;
 	HarryBookStore bookStore = new HarryBookStore();
 	
 	@Test 
@@ -65,23 +66,23 @@ public class TestHarryBookStore {
 	
 	@Test 
 	public void buy_2_1st_book_and_1_2nd_book() {
-		bookStore.addToCart(new HarryPotterBook("1st"), 2);
+		bookStore.addToCart(new HarryPotterBook("1st"), TWO_BOOKS);
 		bookStore.addToCart(new HarryPotterBook("2nd"));
 		assertEquals(23.2, bookStore.getTotalPrice(), 0);
 	}
 	
 	@Test 
 	public void buy_2_1st_book_and_2_2nd_book() {
-		bookStore.addToCart(new HarryPotterBook("1st"), 2);
-		bookStore.addToCart(new HarryPotterBook("2nd"), 2);
+		bookStore.addToCart(new HarryPotterBook("1st"), TWO_BOOKS);
+		bookStore.addToCart(new HarryPotterBook("2nd"), TWO_BOOKS);
 		assertEquals(30.4, bookStore.getTotalPrice(), 0);
 	}
 	
 	@Test
 	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_no_optimize() {
-		bookStore.addToCart(new HarryPotterBook("1st"), 2);
-		bookStore.addToCart(new HarryPotterBook("2nd"), 2);
-		bookStore.addToCart(new HarryPotterBook("3rd"), 2);
+		bookStore.addToCart(new HarryPotterBook("1st"), TWO_BOOKS);
+		bookStore.addToCart(new HarryPotterBook("2nd"), TWO_BOOKS);
+		bookStore.addToCart(new HarryPotterBook("3rd"), TWO_BOOKS);
 		bookStore.addToCart(new HarryPotterBook("4th"));
 		bookStore.addToCart(new HarryPotterBook("5th"));
 		assertEquals(51.6, bookStore.getTotalPrice(), 0);
@@ -90,9 +91,9 @@ public class TestHarryBookStore {
 	@Test
 	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_optimize() {
 		bookStore.setOptimized(true);
-		bookStore.addToCart(new HarryPotterBook("1st"), 2);
-		bookStore.addToCart(new HarryPotterBook("2nd"), 2);
-		bookStore.addToCart(new HarryPotterBook("3rd"), 2);
+		bookStore.addToCart(new HarryPotterBook("1st"), TWO_BOOKS);
+		bookStore.addToCart(new HarryPotterBook("2nd"), TWO_BOOKS);
+		bookStore.addToCart(new HarryPotterBook("3rd"), TWO_BOOKS);
 		bookStore.addToCart(new HarryPotterBook("4th"));
 		bookStore.addToCart(new HarryPotterBook("5th"));
 		assertEquals(51.2, bookStore.getTotalPrice(), 0);

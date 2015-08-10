@@ -3,6 +3,8 @@ package th.co.gosoft.harrypotter;
 import java.util.HashMap;
 import java.util.Map;
 
+import th.co.gosoft.harrypotter.bean.Book;
+
 
 public class ShoppingCart {
 	private Map<String, Integer> shopingCart = new HashMap<String, Integer>();

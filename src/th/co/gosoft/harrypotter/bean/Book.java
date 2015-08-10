@@ -1,8 +1,8 @@
-package th.co.gosoft.harrypotter;
+package th.co.gosoft.harrypotter.bean;
 
 public class Book {
 	private String name;
-	private double price = 8.0;
+	private double price = 0.0;
 	
 	public Book(String name) {
 		this.name = name;
@@ -20,7 +20,7 @@ public class Book {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	protected void setPrice(double price) {
 		this.price = price;
 	}
 }

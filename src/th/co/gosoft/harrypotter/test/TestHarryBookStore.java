@@ -1,9 +1,12 @@
-package th.co.gosoft.harrypotter;
+package th.co.gosoft.harrypotter.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import th.co.gosoft.harrypotter.Book;
+import th.co.gosoft.harrypotter.HarryBookStore;
 
 
 public class TestHarryBookStore {

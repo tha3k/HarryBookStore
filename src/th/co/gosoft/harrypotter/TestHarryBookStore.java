@@ -75,7 +75,7 @@ public class TestHarryBookStore {
 		assertEquals(30.4, bookStore.getTotalPrice(), 0);
 	}
 	
-	@Test @Ignore
+	@Test
 	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_no_optimize() {
 		bookStore.buy(new Book("1st"), 2);
 		bookStore.buy(new Book("2nd"), 2);
@@ -87,6 +87,7 @@ public class TestHarryBookStore {
 	
 	@Test
 	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_optimize() {
+		bookStore.setOptimized(true);
 		bookStore.buy(new Book("1st"), 2);
 		bookStore.buy(new Book("2nd"), 2);
 		bookStore.buy(new Book("3rd"), 2);

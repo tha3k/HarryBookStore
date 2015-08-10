@@ -2,6 +2,7 @@ package th.co.gosoft.harrypotter;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -74,7 +75,7 @@ public class TestHarryBookStore {
 		assertEquals(30.4, bookStore.getTotalPrice(), 0);
 	}
 	
-	@Test
+	@Test @Ignore
 	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_no_optimize() {
 		bookStore.buy(new Book("1st"), 2);
 		bookStore.buy(new Book("2nd"), 2);
@@ -82,6 +83,16 @@ public class TestHarryBookStore {
 		bookStore.buy(new Book("4th"));
 		bookStore.buy(new Book("5th"));
 		assertEquals(51.6, bookStore.getTotalPrice(), 0);
+	}
+	
+	@Test
+	public void buy_2_1st_book_and_2_2nd_book_and_2_3rd_book_and_1_4th_book_and_1_5th_book_should_discount_with_optimize() {
+		bookStore.buy(new Book("1st"), 2);
+		bookStore.buy(new Book("2nd"), 2);
+		bookStore.buy(new Book("3rd"), 2);
+		bookStore.buy(new Book("4th"));
+		bookStore.buy(new Book("5th"));
+		assertEquals(51.2, bookStore.getTotalPrice(), 0);
 	}
 	
 	

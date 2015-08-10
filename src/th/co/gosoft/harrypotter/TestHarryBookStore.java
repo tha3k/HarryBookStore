@@ -13,4 +13,12 @@ public class TestHarryBookStore {
 		assertEquals(0.0, bookStore.getTotalPrice(), 0);
 	}
 
+	@Test
+	public void buy_1_1st_book_total_price_8EUR() {
+		HarryBookStore bookStore = new HarryBookStore();
+		bookStore.buy(new Book("1st"));
+		assertEquals(8, bookStore.getTotalPrice(), 0);
+	}
+	
+	
 }
